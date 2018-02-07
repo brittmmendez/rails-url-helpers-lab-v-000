@@ -14,4 +14,16 @@ class StudentsController < ApplicationController
     def set_student
       @student = Student.find(params[:id])
     end
+
+    def active
+      @student=set_student
+      if @student.active== false
+        @student.active= true
+      else
+         @student.active= false
+       end
+        @student.save
+        redirect_to student_path(@student)
+      
+    end
 end
